@@ -10,8 +10,10 @@ import { apiConfirmRegister } from "../../service";
 import { toast } from "react-toastify";
 import withRouter from "../../hocs/withRouter";
 import path from "../../utils/path";
+import { useState } from "react";
 
 const Register = ({ navigate }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { mutate: $register } = useUserRegister();
   const formik = useFormik({
     initialValues: {
@@ -37,9 +39,11 @@ const Register = ({ navigate }: any) => {
         .required("Confirm Password is required"),
     }),
     onSubmit: (values: TRegister) => {
+      setIsLoading(true);
       $register(values, {
         onSuccess: (response) => {
           if (response?.status) {
+            setIsLoading(false);
             Swal.fire({
               title: "Please Check Your Email For Recive Code",
               input: "number",
@@ -52,20 +56,21 @@ const Register = ({ navigate }: any) => {
               preConfirm: async (code) => {
                 try {
                   const response = await apiConfirmRegister({ code: code });
-                  return response.data;
+                  if (+response.status) {
+                    toast.success("Register Successfully");
+                    navigate({
+                      pathname: `/${path.LOGIN}`,
+                    });
+                  } else {
+                    toast.error("Register Failure");
+                  }
                 } catch (error) {
-                  console.log("🚀 ~ preConfirm: ~ error:", error);
                   Swal.showValidationMessage(`
                     Request failed: ${error}
                   `);
                 }
               },
               allowOutsideClick: () => !Swal.isLoading(),
-            }).then(() => {
-              toast.success("Register Successfully");
-              navigate({
-                pathname: `/${path.LOGIN}`,
-              });
             });
           } else {
             Swal.fire({
@@ -160,7 +165,12 @@ const Register = ({ navigate }: any) => {
             </small>
           ) : null}
 
-          <Buttons style="w-[320px] h-12" title="Register" type="submit" />
+          <Buttons
+            isLoading={isLoading}
+            style="w-[320px] h-12"
+            title="Register"
+            type="submit"
+          />
         </form>
       </div>
     </div>

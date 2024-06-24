@@ -1,10 +1,17 @@
 import { Button } from "@nextui-org/react";
 import { TButton } from "../../types";
 
-const Buttons = ({ title, style, type }: TButton) => {
+const Buttons = ({ title, style, type, isLoading }: TButton) => {
   return (
     <div>
-      <Button type={type} className={style} color="primary" href="#" variant="flat">
+      <Button
+        isLoading={isLoading}
+        type={type}
+        className={style}
+        color="primary"
+        href="#"
+        variant="flat"
+      >
         {title}
       </Button>
     </div>

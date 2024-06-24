@@ -13,7 +13,9 @@ import Search from "../search/Search";
 import Buttons from "./Button";
 import { NavLink } from "react-router-dom";
 import path from "../../utils/path";
-const Header = () => {
+import DropdownLanguage from "./DropdownLanguage";
+import withTranslation from "../../hocs/withTranslation";
+const Header = ({ t }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = ["Profile", "Dashboard"];
@@ -33,28 +35,29 @@ const Header = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
-            Features
+            {t("header.blog")}
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="#" aria-current="page">
-            Customers
+            {t("header.about_me")}
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            {t("header.media")}
           </Link>
         </NavbarItem>
       </NavbarContent>
       <Search></Search>
+      <DropdownLanguage></DropdownLanguage>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link href="#">{t("header.login")}</Link>
         </NavbarItem>
         <NavbarItem>
           <NavLink to={path.REGISTER}>
-            <Buttons title="Register"></Buttons>
+            <Buttons title={t("header.register")}></Buttons>
           </NavLink>
         </NavbarItem>
       </NavbarContent>
@@ -82,4 +85,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withTranslation(Header);

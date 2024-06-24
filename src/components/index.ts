@@ -11,3 +11,4 @@ export { default as Search } from "./search/Search";
 export { default as Buttons } from "./common/Button";
 export { default as InputCommon } from "./common/InputCommon";
 export { default as InputPassword } from "./common/InputPassword";
+export { default as DropdownLanguage } from "./common/DropdownLanguage";
