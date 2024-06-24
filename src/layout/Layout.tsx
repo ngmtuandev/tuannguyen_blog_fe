@@ -12,17 +12,23 @@ import {
 } from "../helper/Xfunction";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../config/i18n";
-import { LANGUAGE } from "../utils/constant";
+import { DARK_MODE, LANGUAGE } from "../utils/constant";
 
 const Layout = () => {
   const queryClient = new QueryClient();
   const location = useLocation();
+  const dark = handleGetLocalStorage(DARK_MODE.KEY);
+
   useEffect(() => {
     const language = handleGetLocalStorage(LANGUAGE.KEY);
     if (!language) {
-      handleSetLocalStorage("vi");
+      handleSetLocalStorage(LANGUAGE.KEY, LANGUAGE.VI);
+    }
+    if (!dark) {
+      handleSetLocalStorage(DARK_MODE.KEY, DARK_MODE.LIGHT);
     }
   }, []);
+
   return (
     <RecoilRoot>
       <I18nextProvider i18n={i18n}>

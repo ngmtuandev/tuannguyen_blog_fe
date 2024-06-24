@@ -94,7 +94,7 @@ const Register = ({ navigate }: any) => {
   });
 
   return (
-    <div className="w-screen h-screen flex-col flex justify-center items-center">
+    <div className="w-screen dark:bg-gray-900 h-screen flex-col flex justify-center items-center">
       <div className="flex md:border py-10 border-gray-300 rounded-md shadow-lg md:w-[450px] md:min-h-[450px] items-center flex-col justify-center gap-5">
         <h3>Register</h3>
         <form

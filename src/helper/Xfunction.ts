@@ -1,5 +1,5 @@
-export const handleSetLocalStorage = (language: string) => {
-  localStorage.setItem("language", language);
+export const handleSetLocalStorage = (key: string, language: string) => {
+  localStorage.setItem(key, language);
 };
 
 export const handleGetLocalStorage = (key: any) => {

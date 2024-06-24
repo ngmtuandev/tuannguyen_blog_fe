@@ -40,12 +40,12 @@ const DropdownLanguage = ({ i18n }: any) => {
     const selectedKey = Array.from(keys)[0];
     if (selectedKey === LANGUAGE.VI) {
       setSelectedKeys({ key: LANGUAGE.VI, label: "VI", flag: vi });
-      handleSetLocalStorage(LANGUAGE.VI);
+      handleSetLocalStorage(LANGUAGE.KEY, LANGUAGE.VI);
       i18n.changeLanguage(LANGUAGE.VI);
       setLanguage(LANGUAGE.VI);
     } else if (selectedKey === LANGUAGE.EN) {
       setSelectedKeys({ key: LANGUAGE.EN, label: "EN", flag: en });
-      handleSetLocalStorage(LANGUAGE.EN);
+      handleSetLocalStorage(LANGUAGE.KEY, LANGUAGE.EN);
       i18n.changeLanguage(LANGUAGE.EN);
       setLanguage(LANGUAGE.EN);
     }

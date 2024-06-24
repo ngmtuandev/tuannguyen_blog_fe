@@ -10,6 +10,7 @@ export default {
     "./node_modules/@nextui-org/theme/dist/components/button.js",
     "./node_modules/@nextui-org/theme/dist/components/(button|snippet|code|input).js",
   ],
+  darkMode: "class",
   theme: {
     extend: {},
   },

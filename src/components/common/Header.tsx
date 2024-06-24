@@ -8,27 +8,43 @@ import {
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "../search/Search";
 import Buttons from "./Button";
 import { NavLink } from "react-router-dom";
 import path from "../../utils/path";
 import DropdownLanguage from "./DropdownLanguage";
 import withTranslation from "../../hocs/withTranslation";
+import SwitchDarkMode from "./SwitchDarkMode";
+import { useRecoilState } from "recoil";
+import { darkModeState } from "../../store/dark-mode.store";
+import { handleGetLocalStorage } from "../../helper/Xfunction";
+import { DARK_MODE } from "../../utils/constant";
 const Header = ({ t }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = ["Profile", "Dashboard"];
+  const [darkMode, _] = useRecoilState(darkModeState);
+
+  useEffect(() => {
+    const dark = handleGetLocalStorage(DARK_MODE.KEY);
+
+    if (dark === DARK_MODE.DARK) {
+      document.documentElement.classList.add(DARK_MODE.DARK);
+    } else {
+      document.documentElement.classList.remove(DARK_MODE.DARK);
+    }
+  }, [darkMode]);
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar className="py-4" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit font-sans">TUAN NGUYEN</p>
+          <p className="font-bold text-inherit md:text-[40px] font-sans">TN</p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -50,6 +66,7 @@ const Header = ({ t }: any) => {
         </NavbarItem>
       </NavbarContent>
       <Search></Search>
+      <SwitchDarkMode></SwitchDarkMode>
       <DropdownLanguage></DropdownLanguage>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">

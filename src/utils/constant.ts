@@ -3,3 +3,9 @@ export class LANGUAGE {
   static VI = "vi";
   static EN = "en";
 }
+
+export class DARK_MODE {
+  static KEY = "dark";
+  static DARK = "dark";
+  static LIGHT = "light";
+}
