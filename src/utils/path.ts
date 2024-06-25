@@ -3,6 +3,9 @@ const path = {
   HOME: "",
   LOGIN: "dang-nhap",
   REGISTER: "dang-ki",
+  SOCIAL_MEDIA: "mang-xa-hoi",
+  BLOG: "bai-viet",
+  ABOUT_ME: "thong-tin",
   POST_DETAIL__SLUG: "bai-viet/:slug",
 };
 

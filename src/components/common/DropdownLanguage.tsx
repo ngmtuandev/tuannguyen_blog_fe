@@ -65,25 +65,26 @@ const DropdownLanguage = ({ i18n }: any) => {
         selectionMode="single"
         selectedKeys={new Set([selectedKeys.key])}
         onSelectionChange={handleSelectionChange}
+        className="flex items-center gap-10"
       >
         <DropdownItem key={LANGUAGE.VI}>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center w-full gap-20">
             <img
               className="w-[30px] h-[20px] object-contain"
               src={vi}
               alt="Vietnamese flag"
             />
-            <span>VI</span>
+            <span>VI (Việt Nam)</span>
           </div>
         </DropdownItem>
         <DropdownItem key={LANGUAGE.EN}>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center w-full gap-20">
             <img
               className="w-[30px] h-[20px] object-contain"
               src={en}
               alt="English flag"
             />
-            <span>EN</span>
+            <span>EN (English)</span>
           </div>
         </DropdownItem>
       </DropdownMenu>

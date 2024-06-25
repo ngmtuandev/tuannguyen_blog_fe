@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import Search from "../search/Search";
 import Buttons from "./Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import path from "../../utils/path";
 import DropdownLanguage from "./DropdownLanguage";
 import withTranslation from "../../hocs/withTranslation";
@@ -31,6 +31,8 @@ const Header = ({ t }: any) => {
   const [darkMode, _] = useRecoilState(darkModeState);
   const [dataInfoUser, setDataInfoUser] = useRecoilState(dataUserState);
 
+  const location = useLocation();
+
   useEffect(() => {
     const dark = handleGetLocalStorage(DARK_MODE.KEY);
 
@@ -46,7 +48,11 @@ const Header = ({ t }: any) => {
   }, [dataUser]);
 
   return (
-    <Navbar className="py-4" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      className="py-4 w-full gap-12"
+      style={{ minWidth: "100%" }}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -58,25 +64,41 @@ const Header = ({ t }: any) => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
+        <NavbarItem
+          isActive={
+            location.pathname.slice(1, location.pathname.length) === path.BLOG
+          }
+        >
+          <NavLink color="foreground" to={path.BLOG}>
             {t("header.blog")}
-          </Link>
+          </NavLink>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+        <NavbarItem
+          isActive={
+            location.pathname.slice(1, location.pathname.length) ===
+            path.ABOUT_ME
+          }
+        >
+          <NavLink color="foreground" to={path.ABOUT_ME} aria-current="page">
             {t("header.about_me")}
-          </Link>
+          </NavLink>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
+        <NavbarItem
+          isActive={
+            location.pathname.slice(1, location.pathname.length) ===
+            path.SOCIAL_MEDIA
+          }
+        >
+          <NavLink color="foreground" to={path.SOCIAL_MEDIA}>
             {t("header.media")}
-          </Link>
+          </NavLink>
         </NavbarItem>
       </NavbarContent>
       <Search></Search>
-      <SwitchDarkMode></SwitchDarkMode>
-      <DropdownLanguage></DropdownLanguage>
+      <div className="flex items-center gap-2">
+        <SwitchDarkMode></SwitchDarkMode>
+        <DropdownLanguage></DropdownLanguage>
+      </div>
       {dataInfoUser ? (
         <UserHeader
           name={dataInfoUser?.userName}
@@ -85,7 +107,7 @@ const Header = ({ t }: any) => {
       ) : (
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-            <Link href={path.LOGIN}>{t("header.login")}</Link>
+            <NavLink to={path.LOGIN}>{t("header.login")}</NavLink>
           </NavbarItem>
           <NavbarItem>
             <NavLink to={path.REGISTER}>

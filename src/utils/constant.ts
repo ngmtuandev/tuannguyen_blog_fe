@@ -13,3 +13,9 @@ export class DARK_MODE {
 export class USER_LOCAL {
   static KEY = "user";
 }
+
+export class NAV_HEADER {
+  static BLOGS = "blogs";
+  static ABOUT_ME = "about_me";
+  static SOCIAL_MEDIA = "social_media";
+}

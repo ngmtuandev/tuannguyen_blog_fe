@@ -12,6 +12,9 @@ export default {
   ],
   darkMode: "class",
   theme: {
+    // padding: {
+    //   main: "10rem",
+    // },
     extend: {},
   },
   darkMode: "class",
