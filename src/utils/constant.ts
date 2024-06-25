@@ -19,3 +19,7 @@ export class NAV_HEADER {
   static ABOUT_ME = "about_me";
   static SOCIAL_MEDIA = "social_media";
 }
+
+export class TIME_DEBOUCE {
+  static SEARCH_HEADER = 1000;
+}

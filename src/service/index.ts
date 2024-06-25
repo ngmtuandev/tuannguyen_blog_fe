@@ -5,3 +5,6 @@ export * from "./user/info.api";
 
 // POST
 export * from "./post/filter.post.api";
+
+// TAG
+export * from "./tag/all-tag.api";
