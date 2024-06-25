@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { TFindPost } from "../../types";
 import { apiFindFilterPost } from "../../service";
 import { useRecoilState } from "recoil";
@@ -19,6 +19,18 @@ const useFindFilterPost = (findInfo: TFindPost) => {
   };
 };
 
+export const useGetPosts = (findInfo: TFindPost) => {
+  return useInfiniteQuery({
+    queryKey: ["posts_infinite", findInfo],
+    queryFn: ({ pageParam }) => {
+      return apiFindFilterPost({ ...findInfo, page: pageParam || 1 });
+    },
+    initialPageParam: 1,
+    getNextPageParam: ({ data }) => {
+      // this recived data of response api
+      return data?.nextPageToken ?? undefined;
+    },
+  });
+};
 
 export default useFindFilterPost;
-

@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiGetEmotionOfPost } from "../../service/emotion/emotion-of-post.api";
-import { useRecoilState } from "recoil";
-import { emotionOfPostState } from "../../store/emotion-of-post.store";
 
 export const useGetEmotionOfPost = ({
   postId,
@@ -10,11 +8,9 @@ export const useGetEmotionOfPost = ({
   postId: any;
   emotionId: number;
 }) => {
-  const [emotionOfPost, _] = useRecoilState(emotionOfPostState);
   const { data, isLoading } = useQuery({
-    queryKey: ["emotion_of_post", postId, emotionId],
-    queryFn: () => apiGetEmotionOfPost(postId, emotionId),
-    enabled: emotionOfPost.emotionId || emotionOfPost.postId,
+    queryKey: ["emotion_of_post", emotionId, postId],
+    queryFn: () => apiGetEmotionOfPost(postId, emotionId || 1),
   });
   return {
     emotion: data,

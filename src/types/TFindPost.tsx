@@ -2,6 +2,6 @@ export type TFindPost = {
   title?: string;
   tagsId?: number;
   languageCode?: string;
-  page?: number | 1;
+  page?: any;
   limit?: number | 3
 };

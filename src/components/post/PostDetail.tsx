@@ -20,12 +20,11 @@ import { useGetEmotionOfPost } from "../../hooks";
 const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
   const [emotionId, setEmotionId] = useRecoilState(emotionCurrentState);
 
-  const { isLoading, emotion } = useGetEmotionOfPost({
+  const { emotion } = useGetEmotionOfPost({
     postId: dataPostDetail?.postid,
     emotionId: emotionId,
   });
 
-  console.log("🚀 ~ PostDetail ~ posts:", emotion);
   return (
     <div className="my-8">
       <Card className="py-4" isFooterBlurred>
