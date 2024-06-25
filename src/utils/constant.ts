@@ -9,3 +9,7 @@ export class DARK_MODE {
   static DARK = "dark";
   static LIGHT = "light";
 }
+
+export class USER_LOCAL {
+  static KEY = "user";
+}

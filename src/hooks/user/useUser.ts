@@ -1,7 +1,11 @@
-import { useMutation } from "@tanstack/react-query";
-import { apiRegister } from "../../service";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { apiGetInfoCurrent, apiLogin, apiRegister } from "../../service";
 
-import { TRegister } from "../../types";
+import { TLogin, TRegister } from "../../types";
+import { useRecoilState } from "recoil";
+import { isLoginState } from "../../store/user.store";
+import { handleGetLocalStorage } from "../../helper/Xfunction";
+import { USER_LOCAL } from "../../utils/constant";
 
 export const useUserRegister = () => {
   return useMutation({
@@ -9,15 +13,21 @@ export const useUserRegister = () => {
   });
 };
 
-// export const useGetAuth = () => {
-//   const { isLogin } = useAuth();
-//   const { data, isLoading } = useQuery({
-//     queryKey: ["me"],
-//     queryFn: () => getUser(),
-//     enabled: isLogin,
-//   });
-//   return {
-//     dataUser: data,
-//     isLoading,
-//   };
-// };
+export const useUserLogin = () => {
+  return useMutation({
+    mutationFn: (loginInfo: TLogin) => apiLogin(loginInfo),
+  });
+};
+
+export const useGetAuth = () => {
+  const [isLogin, _] = useRecoilState(isLoginState);
+  const { data, isLoading } = useQuery({
+    queryKey: ["info"],
+    queryFn: () => apiGetInfoCurrent(),
+    enabled: isLogin || !!handleGetLocalStorage(USER_LOCAL.KEY),
+  });
+  return {
+    dataUser: data,
+    isLoading,
+  };
+};

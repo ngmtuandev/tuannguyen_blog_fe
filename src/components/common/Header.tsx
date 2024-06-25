@@ -20,11 +20,16 @@ import { useRecoilState } from "recoil";
 import { darkModeState } from "../../store/dark-mode.store";
 import { handleGetLocalStorage } from "../../helper/Xfunction";
 import { DARK_MODE } from "../../utils/constant";
+import { useGetAuth } from "../../hooks";
+import { dataUserState } from "../../store/user.store";
+import UserHeader from "../user/UserHeader";
 const Header = ({ t }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { dataUser } = useGetAuth();
 
   const menuItems = ["Profile", "Dashboard"];
   const [darkMode, _] = useRecoilState(darkModeState);
+  const [dataInfoUser, setDataInfoUser] = useRecoilState(dataUserState);
 
   useEffect(() => {
     const dark = handleGetLocalStorage(DARK_MODE.KEY);
@@ -35,6 +40,10 @@ const Header = ({ t }: any) => {
       document.documentElement.classList.remove(DARK_MODE.DARK);
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    if (dataUser) setDataInfoUser(dataUser?.data);
+  }, [dataUser]);
 
   return (
     <Navbar className="py-4" onMenuOpenChange={setIsMenuOpen}>
@@ -68,16 +77,23 @@ const Header = ({ t }: any) => {
       <Search></Search>
       <SwitchDarkMode></SwitchDarkMode>
       <DropdownLanguage></DropdownLanguage>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">{t("header.login")}</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <NavLink to={path.REGISTER}>
-            <Buttons title={t("header.register")}></Buttons>
-          </NavLink>
-        </NavbarItem>
-      </NavbarContent>
+      {dataInfoUser ? (
+        <UserHeader
+          name={dataInfoUser?.userName}
+          email={dataInfoUser?.email}
+        ></UserHeader>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link href={path.LOGIN}>{t("header.login")}</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <NavLink to={path.REGISTER}>
+              <Buttons title={t("header.register")}></Buttons>
+            </NavLink>
+          </NavbarItem>
+        </NavbarContent>
+      )}
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>

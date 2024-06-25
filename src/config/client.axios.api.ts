@@ -1,4 +1,5 @@
 import axios from "axios";
+import { USER_LOCAL } from "../utils/constant";
 
 const api = axios.create({
   baseURL: `http://localhost:3000/tuan-nguyen-blogs/v1`,
@@ -6,9 +7,9 @@ const api = axios.create({
 
 api.interceptors.request.use(
   function (config) {
-    const tokenUser = localStorage.getItem("token_user");
+    const tokenUser = localStorage.getItem(USER_LOCAL.KEY);
     if (tokenUser) {
-      config.headers.Authorization = `bearer ${tokenUser.trim()}`;
+      config.headers.Authorization = `Bearer ${tokenUser.trim()}`;
     }
     return config;
   },

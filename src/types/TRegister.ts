@@ -1,6 +1,6 @@
 export type TRegister = {
-  userName: string;
+  userName?: string;
   password: string;
-  passwordConfirm: string;
+  passwordConfirm?: string;
   email: string;
 };

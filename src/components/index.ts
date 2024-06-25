@@ -13,3 +13,6 @@ export { default as InputCommon } from "./common/InputCommon";
 export { default as InputPassword } from "./common/InputPassword";
 export { default as DropdownLanguage } from "./common/DropdownLanguage";
 export { default as SwitchDarkMode } from "./common/SwitchDarkMode";
+
+// USER
+export { default as UserHeader } from "./user/UserHeader";
