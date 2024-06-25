@@ -5,3 +5,5 @@ export * from "./post/usePost";
 export * from "./tag/useTag";
 
 export * from "./useDebouce";
+
+export * from "./emotion/useEmotion";

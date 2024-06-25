@@ -23,3 +23,9 @@ export class NAV_HEADER {
 export class TIME_DEBOUCE {
   static SEARCH_HEADER = 1000;
 }
+
+export class EMOTION_CODE {
+  static LIKE = 1;
+  static GOOD = 2;
+  static GREAT = 3;
+}

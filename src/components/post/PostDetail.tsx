@@ -7,12 +7,25 @@ import {
   CardFooter,
   Button,
   Chip,
+  Avatar,
 } from "@nextui-org/react";
 import { CheckIcon } from "../../assets";
 import { formatDate } from "../../helper/Xfunction";
 import { Great, Good, Like } from "../../assets/index";
+import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
+import { useRecoilState } from "recoil";
+import { emotionCurrentState } from "../../store/emotion-of-post.store";
+import { useGetEmotionOfPost } from "../../hooks";
 
 const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
+  const [emotionId, setEmotionId] = useRecoilState(emotionCurrentState);
+
+  const { isLoading, emotion } = useGetEmotionOfPost({
+    postId: dataPostDetail?.postid,
+    emotionId: emotionId,
+  });
+
+  console.log("🚀 ~ PostDetail ~ posts:", emotion);
   return (
     <div className="my-8">
       <Card className="py-4" isFooterBlurred>
@@ -63,17 +76,152 @@ const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
           </CardFooter>
         </CardBody>
         <div className="px-4 mt-2 flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <img src={Like} className="w-5 h-5 object-cover" alt="like"></img>
-            <span>{dataPostDetail?.like ?? 0} lượt</span>
+          <div className="flex items-center gap-2 mt-2">
+            <Popover key={"top"} placement={"top-start"} color="foreground">
+              <PopoverTrigger>
+                <div
+                  onClick={() => {
+                    setEmotionId(1);
+                  }}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src={Like}
+                    className="w-5 h-5 object-cover"
+                    alt="like"
+                  ></img>
+                  <span>{dataPostDetail?.like ?? 0} lượt</span>
+                </div>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="px-1 py-2">
+                  <div className="text-small font-bold">Popover Content</div>
+                  <div className="text-tiny flex flex-col gap-1">
+                    {emotion &&
+                      emotion?.data?.map(
+                        (item: { user_name: string }, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 mt-2"
+                            >
+                              <Avatar
+                                classNames={{
+                                  base: "bg-gradient-to-br from-[#FFB457] to-[#FF705B]",
+                                  icon: "text-black/80",
+                                }}
+                                size="sm"
+                                showFallback
+                                name={item?.user_name}
+                                src="https://images.unsplash.com/broken"
+                              />
+                              <span>{item?.user_name}</span>
+                            </div>
+                          );
+                        }
+                      )}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
-          <div className="flex items-center gap-2">
-            <img src={Good} className="w-5 h-5 object-cover" alt="like"></img>
-            <span>{dataPostDetail?.good ?? 0} lượt</span>
+          <div className="flex items-center gap-2 mt-2">
+            <Popover key={"top"} placement={"top-start"} color="foreground">
+              <PopoverTrigger>
+                <div
+                  onClick={() => {
+                    setEmotionId(2);
+                  }}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src={Good}
+                    className="w-5 h-5 object-cover"
+                    alt="like"
+                  ></img>
+                  <span>{dataPostDetail?.good ?? 0} lượt</span>
+                </div>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="px-1 py-2">
+                  <div className="text-small font-bold">Popover Content</div>
+                  <div className="text-tiny flex flex-col gap-1">
+                    {emotion &&
+                      emotion?.data?.map(
+                        (item: { user_name: string }, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 mt-2"
+                            >
+                              <Avatar
+                                size="sm"
+                                showFallback
+                                name={item?.user_name}
+                                src="https://images.unsplash.com/broken"
+                                classNames={{
+                                  base: "bg-gradient-to-br from-[#FFB457] to-[#FF705B]",
+                                  icon: "text-black/80",
+                                }}
+                              />
+                              <span>{item?.user_name}</span>
+                            </div>
+                          );
+                        }
+                      )}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
-          <div className="flex items-center gap-2">
-            <img src={Great} className="w-5 h-5 object-cover" alt="like"></img>
-            <span>{dataPostDetail?.great ?? 0} lượt</span>
+          <div className="flex items-center gap-2 mt-2">
+            <Popover key={"top"} placement={"top-start"} color="foreground">
+              <PopoverTrigger>
+                <div
+                  onClick={() => {
+                    setEmotionId(3);
+                  }}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src={Great}
+                    className="w-5 h-5 object-cover"
+                    alt="like"
+                  ></img>
+                  <span>{dataPostDetail?.great ?? 0} lượt</span>
+                </div>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="px-1 py-2">
+                  <div className="text-small font-bold">Popover Content</div>
+                  <div className="text-tiny flex flex-col gap-1">
+                    {emotion &&
+                      emotion?.data?.map(
+                        (item: { user_name: string }, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 mt-2"
+                            >
+                              <Avatar
+                                classNames={{
+                                  base: "bg-gradient-to-br from-[#FFB457] to-[#FF705B]",
+                                  icon: "text-black/80",
+                                }}
+                                size="sm"
+                                showFallback
+                                name={item?.user_name}
+                                src="https://images.unsplash.com/broken"
+                              />
+                              <span>{item?.user_name}</span>
+                            </div>
+                          );
+                        }
+                      )}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </Card>
