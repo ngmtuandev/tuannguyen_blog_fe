@@ -6,3 +6,4 @@ export * from "./CheckIcon";
 export { default as Like } from "./like.svg";
 export { default as Good } from "./good.svg";
 export { default as Great } from "./great.svg";
+export { default as Dot } from "./dot.svg";

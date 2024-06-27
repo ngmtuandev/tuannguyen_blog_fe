@@ -7,18 +7,18 @@ import {
   CardFooter,
   Button,
   Chip,
-  Avatar,
 } from "@nextui-org/react";
 import { CheckIcon } from "../../assets";
-import { formatDate } from "../../helper/Xfunction";
+import { convertToSlug, formatDate } from "../../helper/Xfunction";
 import { Great, Good, Like } from "../../assets/index";
-import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import { useRecoilState } from "recoil";
 import { emotionCurrentState } from "../../store/emotion-of-post.store";
 import { useGetEmotionOfPost } from "../../hooks";
+import { NavLink } from "react-router-dom";
+import Emotion from "./Emotion";
 
 const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
-  const [emotionId, setEmotionId] = useRecoilState(emotionCurrentState);
+  const [emotionId, _] = useRecoilState(emotionCurrentState);
 
   const { emotion } = useGetEmotionOfPost({
     postId: dataPostDetail?.postid,
@@ -29,9 +29,14 @@ const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
     <div className="my-8">
       <Card className="py-4" isFooterBlurred>
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-          <p className="text-tiny uppercase font-bold text-[1.3rem] hover:underline cursor-pointer">
-            {dataPostDetail?.title}
-          </p>
+          <NavLink
+            to={`${convertToSlug(dataPostDetail?.title!)}`}
+            state={[dataPostDetail, emotion, dataPostDetail?.postid]}
+          >
+            <p className="text-tiny uppercase font-bold text-[1.3rem] hover:underline cursor-pointer">
+              {dataPostDetail?.title}
+            </p>
+          </NavLink>
           <small className="mt-2 font-medium text-gray-700">
             {formatDate(dataPostDetail?.createdat)}
           </small>
@@ -75,7 +80,25 @@ const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
           </CardFooter>
         </CardBody>
         <div className="px-4 mt-2 flex items-center gap-3">
-          <div className="flex items-center gap-2 mt-2">
+          <Emotion
+            icon={Like}
+            emotionTotal={dataPostDetail?.like}
+            emotion={emotion}
+            current={1}
+          ></Emotion>
+          <Emotion
+            icon={Good}
+            emotionTotal={dataPostDetail?.good}
+            emotion={emotion}
+            current={2}
+          ></Emotion>
+          <Emotion
+            icon={Great}
+            emotionTotal={dataPostDetail?.great}
+            emotion={emotion}
+            current={3}
+          ></Emotion>
+          {/* <div className="flex items-center gap-2 mt-2">
             <Popover key={"top"} placement={"top-start"} color="foreground">
               <PopoverTrigger>
                 <div
@@ -123,8 +146,8 @@ const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
                 </div>
               </PopoverContent>
             </Popover>
-          </div>
-          <div className="flex items-center gap-2 mt-2">
+          </div> */}
+          {/* <div className="flex items-center gap-2 mt-2">
             <Popover key={"top"} placement={"top-start"} color="foreground">
               <PopoverTrigger>
                 <div
@@ -172,8 +195,8 @@ const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
                 </div>
               </PopoverContent>
             </Popover>
-          </div>
-          <div className="flex items-center gap-2 mt-2">
+          </div> */}
+          {/* <div className="flex items-center gap-2 mt-2">
             <Popover key={"top"} placement={"top-start"} color="foreground">
               <PopoverTrigger>
                 <div
@@ -221,7 +244,7 @@ const PostDetail = ({ dataPostDetail }: { dataPostDetail?: TPostDetail }) => {
                 </div>
               </PopoverContent>
             </Popover>
-          </div>
+          </div> */}
         </div>
       </Card>
     </div>

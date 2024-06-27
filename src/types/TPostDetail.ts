@@ -6,7 +6,7 @@ export type TPostDetail = {
   tagid?: number;
   tagname?: string;
   thumbnail?: string;
-  title?: string;
+  title: string;
   transcontent?: string;
   transid?: number;
   view?: string | number;

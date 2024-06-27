@@ -6,6 +6,16 @@ export { default as Home } from "./home/Home";
 // POST
 export { default as PostDetail } from "./post/PostDetail";
 export { default as Post } from "./post/Post";
+export { default as PostItemDetail } from "./post/PostItemDetail";
+export { default as HeaderPostItemDetail } from "./post/HeaderPostItemDetail";
+export { default as Emotion } from "./post/Emotion";
+export { default as EmotionAction } from "./post/EmotionAction";
+
+// COMMENT
+export { default as Comment } from "./post/Comment";
+export { default as CommentItem } from "./comment/CommentItem";
+export { default as CommentList } from "./comment/CommentList";
+export { default as OptionComment } from "./comment/OptionComment";
 
 // COMMON
 export { default as Buttons } from "./common/Button";
@@ -13,6 +23,7 @@ export { default as InputCommon } from "./common/InputCommon";
 export { default as InputPassword } from "./common/InputPassword";
 export { default as DropdownLanguage } from "./common/DropdownLanguage";
 export { default as SwitchDarkMode } from "./common/SwitchDarkMode";
+export { default as BreadcrumbsCustom } from "./common/Breadcrumbs";
 
 // USER
 export { default as UserHeader } from "./user/UserHeader";

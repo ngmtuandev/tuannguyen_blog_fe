@@ -18,3 +18,18 @@ export const formatDate = (isoString: any) => {
 
   return `thg ${month} ${day}, ${hours}:${minutes}`;
 };
+
+export const convertToSlug = (str: string) => {
+  str = str.toLowerCase();
+
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+  str = str
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+
+  return str;
+};

@@ -2,19 +2,25 @@ import { Chip } from "@nextui-org/react";
 import { useGetTags } from "../../hooks";
 import { useRecoilState } from "recoil";
 import { tagState } from "../../store/tag.store";
-import { formatDate, handleGetLocalStorage } from "../../helper/Xfunction";
+import {
+  convertToSlug,
+  formatDate,
+  handleGetLocalStorage,
+} from "../../helper/Xfunction";
 import { LANGUAGE } from "../../utils/constant";
 import { valueSearchState } from "../../store/value-search.store";
 import useSearchPost from "../../hooks/post/useSearchPost";
 import { TPostDetail } from "../../types";
 import { Image } from "@nextui-org/react";
+import { Link, NavLink } from "react-router-dom";
+import path from "../../utils/path";
 
 const ModelSearch = ({ setIsInsideModelSearch }: any) => {
   const { dataTags } = useGetTags();
   const [tag, setTag] = useRecoilState(tagState);
   const [valueSearch, _] = useRecoilState(valueSearchState);
 
-  const { isLoadingPost, posts } = useSearchPost({
+  const { posts } = useSearchPost({
     languageCode: handleGetLocalStorage(LANGUAGE.KEY) || LANGUAGE.VI,
     page: 1,
     limit: 3,
@@ -22,7 +28,6 @@ const ModelSearch = ({ setIsInsideModelSearch }: any) => {
     title: valueSearch,
   });
 
-  console.log("posts    :   ===================== > ", posts);
 
   const handleSelectTag = (id: number) => {
     setTag(id);
@@ -72,12 +77,18 @@ const ModelSearch = ({ setIsInsideModelSearch }: any) => {
                     className="m-5"
                   />
                   <div className="flex flex-col">
-                    <span className="uppercase font-semibold hover:underline cursor-pointer">{item?.title}</span>
+                    <NavLink to={`${path.BLOG}/${convertToSlug(item?.title!)}`}>
+                      <span className="uppercase font-semibold hover:underline cursor-pointer">
+                        {item?.title}
+                      </span>
+                    </NavLink>
                     <small>{formatDate(item?.createdat)}</small>
                   </div>
                 </div>
 
-                <Chip color="primary" variant="flat" size="md">{item?.tagname}</Chip>
+                <Chip color="primary" variant="flat" size="md">
+                  {item?.tagname}
+                </Chip>
               </div>
             );
           })}

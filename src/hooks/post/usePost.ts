@@ -20,8 +20,9 @@ const useFindFilterPost = (findInfo: TFindPost) => {
 };
 
 export const useGetPosts = (findInfo: TFindPost) => {
+  const [language, _] = useRecoilState(languageState);
   return useInfiniteQuery({
-    queryKey: ["posts_infinite", findInfo],
+    queryKey: ["posts_infinite", findInfo, language],
     queryFn: ({ pageParam }) => {
       return apiFindFilterPost({ ...findInfo, page: pageParam || 1 });
     },

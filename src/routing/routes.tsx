@@ -6,11 +6,10 @@ import {
   Home,
   Login,
   Post,
-  PostDetail,
+  PostItemDetail,
   Register,
   SocialMedia,
 } from "../components";
-
 
 const router = createBrowserRouter([
   {
@@ -19,7 +18,10 @@ const router = createBrowserRouter([
     children: [
       { path: path.HOME, element: <Home /> },
       { path: path.LOGIN, element: <Login /> },
-      { path: path.POST_DETAIL__SLUG, element: <PostDetail></PostDetail> },
+      {
+        path: path.POST_DETAIL__SLUG,
+        element: <PostItemDetail></PostItemDetail>,
+      },
       { path: path.REGISTER, element: <Register /> },
       { path: path.SOCIAL_MEDIA, element: <SocialMedia /> },
       { path: path.ABOUT_ME, element: <AboutMe /> },

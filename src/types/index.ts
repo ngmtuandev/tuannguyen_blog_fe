@@ -5,3 +5,6 @@ export * from "./TLogin";
 export * from "./TUserHeader";
 export * from "./TFindPost";
 export * from "./TPostDetail";
+export * from "./TCreateEmotionOfPost";
+export * from "./TCreateComment";
+export * from "./TGetComment";
