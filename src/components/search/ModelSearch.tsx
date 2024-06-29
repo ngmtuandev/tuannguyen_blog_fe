@@ -12,7 +12,7 @@ import { valueSearchState } from "../../store/value-search.store";
 import useSearchPost from "../../hooks/post/useSearchPost";
 import { TPostDetail } from "../../types";
 import { Image } from "@nextui-org/react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import path from "../../utils/path";
 
 const ModelSearch = ({ setIsInsideModelSearch }: any) => {
@@ -27,7 +27,6 @@ const ModelSearch = ({ setIsInsideModelSearch }: any) => {
     tagsId: tag,
     title: valueSearch,
   });
-
 
   const handleSelectTag = (id: number) => {
     setTag(id);
@@ -77,7 +76,10 @@ const ModelSearch = ({ setIsInsideModelSearch }: any) => {
                     className="m-5"
                   />
                   <div className="flex flex-col">
-                    <NavLink to={`${path.BLOG}/${convertToSlug(item?.title!)}`}>
+                    <NavLink
+                      to={`${path.BLOG}/${convertToSlug(item?.title!)}`}
+                      state={[{ postid: item?.postid }, undefined, undefined]}
+                    >
                       <span className="uppercase font-semibold hover:underline cursor-pointer">
                         {item?.title}
                       </span>

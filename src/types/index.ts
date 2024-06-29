@@ -8,3 +8,4 @@ export * from "./TPostDetail";
 export * from "./TCreateEmotionOfPost";
 export * from "./TCreateComment";
 export * from "./TGetComment";
+export * from "./TNotification";

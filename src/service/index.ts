@@ -16,3 +16,6 @@ export * from "./tag/all-tag.api";
 // COMMENT
 export * from "./comment/create-comment.api";
 export * from "./comment/like-comment.api";
+
+// NOTIFICATION
+export * from "./notification/find-all-notification.api";

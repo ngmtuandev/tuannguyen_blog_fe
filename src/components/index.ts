@@ -35,3 +35,7 @@ export { default as AboutMe } from "./about-me/AboutMe";
 // SEARCH
 export { default as Search } from "./search/Search";
 export { default as ModelSearch } from "./search/ModelSearch";
+
+
+// NOTIFICATION
+export { default as Notification } from "./common/Notification";

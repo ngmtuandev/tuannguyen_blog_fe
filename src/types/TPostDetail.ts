@@ -1,4 +1,5 @@
 export type TPostDetail = {
+  id?: number;
   createdat?: string | Date | number;
   description?: string;
   languagecode?: string;

@@ -7,8 +7,9 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
+  DropdownTrigger,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Search from "../search/Search";
 import Buttons from "./Button";
 import { NavLink, useLocation } from "react-router-dom";
@@ -20,13 +21,16 @@ import { useRecoilState } from "recoil";
 import { darkModeState } from "../../store/dark-mode.store";
 import { handleGetLocalStorage } from "../../helper/Xfunction";
 import { DARK_MODE } from "../../utils/constant";
-import { useGetAuth } from "../../hooks";
+import { useGetAllNotification, useGetAuth } from "../../hooks";
 import { dataUserState } from "../../store/user.store";
 import UserHeader from "../user/UserHeader";
+import { TNotification } from "../../types";
+import Notification from "./Notification";
+
 const Header = ({ t }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { dataUser } = useGetAuth();
-
+  const { dataNotification } = useGetAllNotification();
   const menuItems = ["Profile", "Dashboard"];
   const [darkMode, _] = useRecoilState(darkModeState);
   const [dataInfoUser, setDataInfoUser] = useRecoilState(dataUserState);
@@ -92,6 +96,18 @@ const Header = ({ t }: any) => {
           <NavLink color="foreground" to={path.SOCIAL_MEDIA}>
             {t("header.media")}
           </NavLink>
+        </NavbarItem>
+        <NavbarItem>
+          <Notification>
+            <DropdownTrigger>
+              <div className="cursor-pointer" color="foreground">
+                {t("header.notification")}
+                <sup className="text-red-600 font-medium">
+                  {dataNotification?.length} thông báo
+                </sup>
+              </div>
+            </DropdownTrigger>
+          </Notification>
         </NavbarItem>
       </NavbarContent>
       <Search></Search>

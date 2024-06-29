@@ -17,3 +17,5 @@ export * from "./comment/useGetComment";
 export * from "./comment/useGetCommentChildren";
 
 export * from "./comment/useDeleteComment";
+
+export * from "./notification/useNotification";

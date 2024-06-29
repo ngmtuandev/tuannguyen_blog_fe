@@ -13,9 +13,7 @@ import CommentList from "../comment/CommentList";
 
 const PostItemDetail = () => {
   let { state } = useLocation();
-  console.log("🚀 ~ PostItemDetail ~ state:   =============", state[2]);
   const { post_item } = useFindItemPost(state[0]?.postid!);
-  console.log("🚀 ~ PostItemDetail ~ post_item:", post_item);
   const [emotionId, _] = useRecoilState(emotionCurrentState);
 
   const { emotion } = useGetEmotionOfPost({
