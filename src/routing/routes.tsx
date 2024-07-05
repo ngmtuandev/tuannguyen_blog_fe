@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import path from "../utils/path";
 import {
   AboutMe,
+  EditProfile,
   Home,
   Login,
   Post,
@@ -10,6 +11,7 @@ import {
   Register,
   SocialMedia,
 } from "../components";
+import User from "../pages/User";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
       { path: path.SOCIAL_MEDIA, element: <SocialMedia /> },
       { path: path.ABOUT_ME, element: <AboutMe /> },
       { path: path.BLOG, element: <Post /> },
+      { path: path.EDIT_PROFILE, element: <User /> },
     ],
   },
 ]);

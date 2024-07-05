@@ -27,6 +27,7 @@ export { default as BreadcrumbsCustom } from "./common/Breadcrumbs";
 
 // USER
 export { default as UserHeader } from "./user/UserHeader";
+export { default as EditProfile } from "./user/EditProfile";
 
 // ME
 export { default as SocialMedia } from "./about-me/SocialMedia";
@@ -35,7 +36,6 @@ export { default as AboutMe } from "./about-me/AboutMe";
 // SEARCH
 export { default as Search } from "./search/Search";
 export { default as ModelSearch } from "./search/ModelSearch";
-
 
 // NOTIFICATION
 export { default as Notification } from "./common/Notification";

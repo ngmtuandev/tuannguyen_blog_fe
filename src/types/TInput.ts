@@ -8,4 +8,5 @@ export type TInput = {
   onChange?: any;
   onBlur?: any;
   name?: any;
+  disabled?: boolean;
 };

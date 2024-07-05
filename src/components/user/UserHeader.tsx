@@ -9,6 +9,8 @@ import {
 } from "@nextui-org/react";
 import { dataUserState, isLoginState } from "../../store/user.store";
 import { USER_LOCAL } from "../../utils/constant";
+import { NavLink } from "react-router-dom";
+import path from "../../utils/path";
 
 const UserHeader = ({ name, avatar, email }: TUserHeader) => {
   const [_, setIsLogin] = useRecoilState(isLoginState);
@@ -31,7 +33,9 @@ const UserHeader = ({ name, avatar, email }: TUserHeader) => {
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="new">New file</DropdownItem>
+        <DropdownItem key="new">
+          <NavLink to={path.EDIT_PROFILE}>Edit Info</NavLink>
+        </DropdownItem>
         <DropdownItem key="copy">Copy link</DropdownItem>
         <DropdownItem key="edit">Logout</DropdownItem>
         <DropdownItem

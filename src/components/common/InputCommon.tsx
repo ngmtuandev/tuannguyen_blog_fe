@@ -12,10 +12,12 @@ const InputCommon = ({
   onChange,
   onBlur,
   name,
+  disabled,
 }: TInput) => {
   return (
     <div>
       <Input
+        disabled={disabled}
         isRequired={isRequired}
         isClearable
         type={type}
