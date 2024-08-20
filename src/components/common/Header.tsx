@@ -24,7 +24,6 @@ import { DARK_MODE } from "../../utils/constant";
 import { useGetAllNotification, useGetAuth } from "../../hooks";
 import { dataUserState } from "../../store/user.store";
 import UserHeader from "../user/UserHeader";
-import { TNotification } from "../../types";
 import Notification from "./Notification";
 
 const Header = ({ t }: any) => {
@@ -140,8 +139,8 @@ const Header = ({ t }: any) => {
                 index === 2
                   ? "primary"
                   : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
+                    ? "danger"
+                    : "foreground"
               }
               className="w-full"
               href="#"

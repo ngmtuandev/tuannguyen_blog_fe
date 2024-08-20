@@ -5,13 +5,15 @@ import {
   AboutMe,
   EditProfile,
   Home,
+  LayoutManage,
   Login,
   Post,
   PostItemDetail,
+  PostManage,
   Register,
   SocialMedia,
+  UserManage,
 } from "../components";
-import User from "../pages/User";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,15 @@ const router = createBrowserRouter([
       { path: path.SOCIAL_MEDIA, element: <SocialMedia /> },
       { path: path.ABOUT_ME, element: <AboutMe /> },
       { path: path.BLOG, element: <Post /> },
-      { path: path.EDIT_PROFILE, element: <User /> },
+      { path: path.EDIT_PROFILE, element: <EditProfile /> },
+    ],
+  },
+  {
+    path: path.ADMIN,
+    element: <LayoutManage></LayoutManage>,
+    children: [
+      { path: path.ADMIN_USER, element: <UserManage /> },
+      { path: path.ADMIN_POST, element: <PostManage /> },
     ],
   },
 ]);

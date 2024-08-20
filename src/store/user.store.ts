@@ -10,3 +10,8 @@ export const dataUserState = atom<IUserInfo | undefined>({
   key: "dataUserState",
   default: undefined,
 });
+
+export const dataUserAll = atom({
+  key: "dataUserAll",
+  default: [],
+});

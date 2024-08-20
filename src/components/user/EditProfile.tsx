@@ -4,10 +4,10 @@ import * as Yup from "yup";
 import Buttons from "../common/Button";
 import { dataUserState } from "../../store/user.store";
 import { useRecoilState } from "recoil";
+import { memo } from "react";
 
 const EditProfile = () => {
   const [dataInfoUser] = useRecoilState(dataUserState);
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -27,6 +27,7 @@ const EditProfile = () => {
     }),
     onSubmit: () => {},
   });
+  console.log('1234')
   return (
     <div>
       <form
@@ -40,7 +41,6 @@ const EditProfile = () => {
           name="email"
           placeholder="Enter your email"
           style="w-screen"
-          disabled={true}
           value={dataInfoUser?.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -76,4 +76,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default memo(EditProfile);

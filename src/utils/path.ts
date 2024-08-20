@@ -8,6 +8,9 @@ const path = {
   ABOUT_ME: "thong-tin",
   EDIT_PROFILE: "chinh-sua-thong-tin",
   POST_DETAIL__SLUG: "bai-viet/:slug",
+  ADMIN: "quan-ly",
+  ADMIN_USER: "nguoi-dung",
+  ADMIN_POST: "quan-ly-bai-viet"
 };
 
 export default path;

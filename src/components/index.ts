@@ -39,3 +39,8 @@ export { default as ModelSearch } from "./search/ModelSearch";
 
 // NOTIFICATION
 export { default as Notification } from "./common/Notification";
+
+// ADMIN
+export { default as PostManage } from "./admin/PostManage"
+export { default as UserManage } from "./admin/UserManage"
+export { default as LayoutManage } from "./admin/LayoutManage"
